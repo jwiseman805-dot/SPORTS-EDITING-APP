@@ -56,7 +56,7 @@ export default function UploadPage() {
         Post Your Edit
       </h1>
       <p className="text-sm mb-8" style={{ color: "var(--text-muted)" }}>
-        Share your sport highlight reel with the ReelSport community
+        Share your sport highlight reel with the WiseSport community
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-6">

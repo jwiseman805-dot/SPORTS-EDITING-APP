@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { SPORT_FILTERS } from "@/lib/data";
 import { SportCategory } from "@/lib/types";
+import SportIcon from "./SportIcon";
 
 interface SportFilterBarProps {
   active: SportCategory;
@@ -38,7 +39,7 @@ export default function SportFilterBar({ active }: SportFilterBarProps) {
               fontWeight: isActive ? 700 : 500,
             }}
           >
-            <span>{filter.icon}</span>
+            <SportIcon sport={filter.id} size={16} />
             {filter.label}
           </button>
         );
