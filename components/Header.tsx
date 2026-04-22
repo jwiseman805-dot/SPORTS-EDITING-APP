@@ -4,7 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function Header() {
+interface HeaderProps {
+  onMenuToggle: () => void;
+}
+
+export default function Header({ onMenuToggle }: HeaderProps) {
   const [query, setQuery] = useState("");
   const router = useRouter();
 
@@ -17,14 +21,25 @@ export default function Header() {
 
   return (
     <header
-      className="fixed top-0 right-0 z-50 flex items-center gap-4 px-6 h-16 border-b"
+      className="fixed top-0 right-0 left-0 lg:left-64 z-50 flex items-center gap-4 px-4 lg:px-6 h-16 border-b"
       style={{
-        left: "256px",
         backgroundColor: "rgba(10, 10, 15, 0.9)",
         backdropFilter: "blur(12px)",
         borderColor: "var(--border)",
       }}
     >
+      {/* Hamburger - mobile only */}
+      <button
+        onClick={onMenuToggle}
+        className="lg:hidden p-1.5 rounded-lg shrink-0"
+        style={{ color: "var(--text-secondary)" }}
+        aria-label="Open menu"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
       {/* Search */}
       <form onSubmit={handleSearch} className="flex-1 max-w-xl">
         <div className="relative">
@@ -64,7 +79,7 @@ export default function Header() {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
           </svg>
-          Post Edit
+          <span className="hidden sm:inline">Post Edit</span>
         </Link>
 
         {/* Notification bell */}
